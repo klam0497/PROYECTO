@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin-wordp
+      environment:
+        PMA_HOST: db_wordpress
+        VIRTUAL_HOST: phpMyAdmin.karlatic.ml
+        VIRTUAL_PORT: 80
+        LETSENCRYPT_HOST: phpMyAdmin.karlatic.ml
+        LETSENCRYPT_EMAIL: klam9785@gmail.com
+      restart: always
+      expose:
+       - 80
+      volumes:
+       - /sessions
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
